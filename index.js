@@ -14,6 +14,7 @@ function handleClick() {
     fetch("https://deckofcardsapi.com/api/deck/new/shuffle/")
         .then(res => res.json())
         .then(data => {
+            console.log("New Deck Data:", data); // Add this line
             remainingText.textContent = `Remaining cards: ${data.remaining}`
             deckId = data.deck_id
  
