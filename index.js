@@ -16,6 +16,7 @@ function handleClick() {
         .then(data => {
             remainingText.textContent = `Remaining cards: ${data.remaining}`
             deckId = data.deck_id
+ 
         })
 }
 
