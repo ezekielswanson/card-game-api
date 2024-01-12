@@ -9,24 +9,20 @@ const remainingText = document.getElementById("remaining")
 const computerScoreEl = document.getElementById("computer-score")
 const myScoreEl = document.getElementById("my-score")
 
-
-//change api url
+// Fix the API URL
 function handleClick() {
-    fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
+    fetch("https://deckofcardsapi.com/api/deck/new/shuffle/")
         .then(res => res.json())
         .then(data => {
             remainingText.textContent = `Remaining cards: ${data.remaining}`
             deckId = data.deck_id
-            console.log(click)
         })
-
-
 }
 
 newDeckBtn.addEventListener("click", handleClick)
 
 drawCardBtn.addEventListener("click", () => {
-    fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
+    fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`)
         .then(res => res.json())
         .then(data => {
             remainingText.textContent = `Remaining cards: ${data.remaining}`
@@ -42,20 +38,15 @@ drawCardBtn.addEventListener("click", () => {
             if (data.remaining === 0) {
                 drawCardBtn.disabled = true
                 if (computerScore > myScore) {
-                    // display "The computer won the game!"
                     header.textContent = "The computer won the game!"
                 } else if (myScore > computerScore) {
-                    // display "You won the game!"
                     header.textContent = "You won the game!"
                 } else {
-                    // display "It's a tie game!"
                     header.textContent = "It's a tie game!"
                 }
             }
         })
 })
-
-
 
 function determineCardWinner(card1, card2) {
     const valueOptions = ["2", "3", "4", "5", "6", "7", "8", "9", 
@@ -75,4 +66,3 @@ function determineCardWinner(card1, card2) {
         return "War!"
     }
 }
-
